@@ -13,6 +13,23 @@ dataset = xdr_data // Using the xdr dataset
 
 ```
 
+### New Users Graph 
+
+dataset = xdr_data // Using the xdr dataset
+ | filter event_type = ENUM.EVENT_LOG and action_evtlog_event_id = 4720 // Filtering by windows event log and id 4625
+
+ // | fields action_evtlog_message
+| alter  Account_Creator = arrayindex(regextract(action_evtlog_message, "\s+(?:[^:]+:){3}([^\n]+)"),0), User_Name = arrayindex(regextract(action_evtlog_message, "\s+(?:[^:]+:){8}([^\n]+)"),0), Domain = arrayindex(regextract(action_evtlog_message, "\s+(?:[^:]+:){9}([^\n]+)"),0)
+
+
+| fields  User_Name as NEW_USER , Domain, Account_Creator as Who
+| filter NEW_USER not contains "Administrator"
+
+| comp count(NEW_USER )
+| view graph type = gauge subtype = radial yaxis = count_1 maxscalerange = 20 scale_threshold("#5dad1a","#e40000","10") seriestitle("count_1","New Users") 
+
+
+
 ##  Users Enabled
 
 ```
@@ -30,7 +47,7 @@ dataset = xdr_data // Using the xdr dataset
 
 ```
 dataset = xdr_data // Using the xdr dataset
-| filter event_type = ENUM.EVENT_LOG and action_evtlog_event_id = 4725 // Filtering by windows event log and id 4625
+| filter event_type = ENUM.EVENT_LOG and action_evtlog_event_id = 4725 
 | alter  Account_Creator = arrayindex(regextract(action_evtlog_message, "\s+(?:[^:]+:){3}([^\n]+)"),0), User_Name = arrayindex(regextract(action_evtlog_message, "\s+(?:[^:]+:){8}([^\n]+)"),0), Domain = arrayindex(regextract(action_evtlog_message, "\s+(?:[^:]+:){9}([^\n]+)"),0)
 | fields  User_Name as Disabled_Account , Domain, Account_Creator as Who
 | sort desc _TIME 
