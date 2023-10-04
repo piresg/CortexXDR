@@ -13,8 +13,9 @@ dataset = xdr_data // Using the xdr dataset
 
 ```
 
-### New Users Graph 
+###  New Users Graph 
 
+```
 dataset = xdr_data // Using the xdr dataset
  | filter event_type = ENUM.EVENT_LOG and action_evtlog_event_id = 4720 // Filtering by windows event log and id 4625
 
@@ -27,6 +28,9 @@ dataset = xdr_data // Using the xdr dataset
 
 | comp count(NEW_USER )
 | view graph type = gauge subtype = radial yaxis = count_1 maxscalerange = 20 scale_threshold("#5dad1a","#e40000","10") seriestitle("count_1","New Users") 
+
+```
+
 
 
 
