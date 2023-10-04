@@ -80,5 +80,3 @@ filter actor_process_image_name = "consent.exe"
 
 ```
 
-
-kzxjchkxzjchzkxjchzxkjchzkxjch
