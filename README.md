@@ -1,5 +1,4 @@
 
-11
 # Active Directory Events
 
 ## New Users
@@ -80,5 +79,3 @@ filter actor_process_image_name = "consent.exe"
 | fields  Time, User, actor_process_image_name, actor_process_image_path
 
 ```
-
-1111
