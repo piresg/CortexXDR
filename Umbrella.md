@@ -1,7 +1,7 @@
 # Umbrella 
 
 ![](./images/Umbrella1.png)
-![](./images/umbrella2.png)
+![](./images/umbrela2.png)
 
 
 ## Blocked Requests by Destination Country (Umbrella)
